@@ -1,0 +1,35 @@
+# Ambiente Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.import_linter_cache/
+.ipynb_checkpoints/
+
+# Segredos e credenciais (nunca versionar)
+.env
+kaggle.json
+.azure/
+
+# Dados: nada de data/ entra no git, exceto o README que descreve a organização
+data/*
+!data/README.md
+
+# Pesos, vídeos e pacotes de dados (ficam no HF Hub ou fora do repositório)
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.mp4
+*.mov
+*.webm
+*.avi
+*.mkv
+*.zip
+
+# PDFs na raiz: o plano de trabalho tem e-mails de terceiros (P10)
+/*.pdf

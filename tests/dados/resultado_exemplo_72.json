@@ -1,0 +1,43 @@
+{
+  "versao": { "contrato": "1.0.0", "modelo": "mobilenetv2-rodada-2", "regras": "1.0.0" },
+  "duracao_s": 38.0,
+  "orientacao": "paisagem",
+  "nota": 72,
+  "faixa": "QUASE LÁ",
+  "frase_tela": "Faltou a rotação dos polegares, e o dorso dos dedos ficou curto.",
+  "frase_card": { "texto": "Meus polegares ficaram de fora.", "destaque": "polegares" },
+  "passos": [
+    { "numero": 1, "nome": "Palma com palma", "nome_curto": "Palma com palma",
+      "instrucao": "Esfregue as palmas uma contra a outra.", "tempo_s": 7.2, "status": "feito" },
+    { "numero": 2, "nome": "Palma sobre dorso, dedos entrelaçados", "nome_curto": "Palma sobre dorso",
+      "instrucao": "Palma direita sobre o dorso da mão esquerda, com os dedos entrelaçados; depois troque de mão.",
+      "tempo_s": 4.7, "status": "feito" },
+    { "numero": 3, "nome": "Palma com palma, dedos entrelaçados", "nome_curto": "Dedos entrelaçados",
+      "instrucao": "Palmas juntas e dedos entrelaçados, esfregando entre eles.", "tempo_s": 4.8, "status": "feito" },
+    { "numero": 4, "nome": "Dorso dos dedos na palma oposta", "nome_curto": "Dorso dos dedos",
+      "instrucao": "Com os dedos dobrados e encaixados, esfregue o dorso deles na palma oposta; depois troque de mão.",
+      "tempo_s": 1.1, "status": "curto" },
+    { "numero": 5, "nome": "Rotação do polegar", "nome_curto": "Rotação do polegar",
+      "instrucao": "Segure o polegar esquerdo com a mão direita e esfregue girando; depois troque de mão.",
+      "tempo_s": 0.0, "status": "nao_detectado" },
+    { "numero": 6, "nome": "Pontas dos dedos na palma", "nome_curto": "Pontas dos dedos",
+      "instrucao": "Esfregue as pontas dos dedos em círculos na palma oposta; depois troque de mão.",
+      "tempo_s": 5.3, "status": "feito" }
+  ],
+  "trechos": [
+    { "inicio_s": 0.0,  "fim_s": 3.0,  "classe": "outro",   "confianca": 0.88 },
+    { "inicio_s": 3.0,  "fim_s": 10.2, "classe": 1,         "confianca": 0.93 },
+    { "inicio_s": 10.2, "fim_s": 14.9, "classe": 2,         "confianca": 0.90 },
+    { "inicio_s": 14.9, "fim_s": 19.7, "classe": 3,         "confianca": 0.91 },
+    { "inicio_s": 19.7, "fim_s": 21.0, "classe": "incerto", "confianca": 0.52 },
+    { "inicio_s": 21.0, "fim_s": 22.1, "classe": 4,         "confianca": 0.74 },
+    { "inicio_s": 22.1, "fim_s": 27.4, "classe": 6,         "confianca": 0.89 },
+    { "inicio_s": 27.4, "fim_s": 38.0, "classe": "outro",   "confianca": 0.95 }
+  ],
+  "regioes": {
+    "palmas": "coberto", "dorso_maos": "coberto", "espacos_dedos": "coberto",
+    "lado_palmar_dedos": "coberto", "dorso_dedos": "parcial",
+    "polegares": "nao_coberto", "pontas_dedos": "coberto"
+  },
+  "resumo": { "passos_completos": 4, "passo_mais_longo": { "numero": 1, "tempo_s": 7.2 } }
+}

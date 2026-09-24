@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handreplay"
+dynamic = ["version"]
+description = "Replay comentado, mapa de cobertura e nota de uma lavagem de mãos a partir de um vídeo."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+# Faixas amplas: o pacote é instalado no Kaggle sem reinstalar o que já existe lá.
+# As versões exatas da produção ficam em requirements.txt.
+dependencies = [
+    "numpy>=2.0",
+    "pydantic>=2.7",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "handreplay.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------- ruff
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["handreplay", "handreplay_offline"]
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib", "-ra"]
+xfail_strict = true
+
+# ---------------------------------------------------------------- import-linter
+# Fronteiras descritas em docs/architecture/diagnostico-e-proposta.md, seção 6.2.
+[tool.importlinter]
+root_packages = ["handreplay", "handreplay_offline"]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "1. A API nunca importa o pacote offline"
+type = "forbidden"
+source_modules = ["handreplay"]
+forbidden_modules = ["handreplay_offline"]
+
+[[tool.importlinter.contracts]]
+name = "2. A API nunca importa dependências de treino"
+type = "forbidden"
+source_modules = ["handreplay"]
+forbidden_modules = ["torch", "torchvision", "onnx", "onnxscript", "pandas", "matplotlib"]
+
+[[tool.importlinter.contracts]]
+name = "3. Preparação de dados e métricas rodam no PC sem torch"
+type = "forbidden"
+source_modules = [
+    "handreplay_offline.sementes",
+    "handreplay_offline.anotacoes",
+    "handreplay_offline.dados",
+    "handreplay_offline.avaliacao",
+]
+forbidden_modules = ["torch", "torchvision"]
+
+[[tool.importlinter.contracts]]
+name = "4. Camadas do pacote handreplay"
+type = "layers"
+containers = ["handreplay"]
+layers = [
+    "api | __main__",
+    "pipeline",
+    "regras | video | modelo | config",
+    "textos",
+    "contrato",
+]
+
+[[tool.importlinter.contracts]]
+name = "5. Sem dependências circulares"
+type = "acyclic_siblings"
+ancestors = ["handreplay", "handreplay_offline"]

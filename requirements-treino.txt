@@ -1,0 +1,12 @@
+# Fora da API: PC local (Fases 0, 1 e 3) e Kaggle (Fase 2).
+# Faixas mínimas de propósito: no Kaggle, o pip mantém o torch e o torchvision que já vêm na imagem.
+# Cada notebook grava `pip freeze` na saída para registrar as versões exatas usadas.
+pandas>=2.2
+matplotlib>=3.9
+scikit-learn>=1.5
+onnxruntime>=1.20
+# Exigidos pelo exportador ONNX do PyTorch (torch.onnx.export com dynamo=True).
+onnx>=1.17
+onnxscript>=0.2
+torch>=2.9
+torchvision>=0.24
