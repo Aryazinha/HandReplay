@@ -1,0 +1,13 @@
+# Ative com `pre-commit install` depois do `git init` (o pre-commit exige um repositório git).
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.9 # mesma versão de requirements-dev.txt
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+  # Apaga as saídas dos notebooks antes do commit, para que frames dos datasets não entrem no git.
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.9.1
+    hooks:
+      - id: nbstripout
